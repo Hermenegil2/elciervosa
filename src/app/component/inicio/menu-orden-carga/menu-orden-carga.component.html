@@ -1,0 +1,21 @@
+<div class="fexe-menu">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img class="logo-orden" src="../../../../assets/img/logo.png" alt="">
+            </a>
+
+            <div class="mx-auto text-center">
+                <span class="navbar-text text-white">
+                    Hola! {{name}}
+                </span>
+            </div>
+
+            <span class="navbar-text text-white">
+                <a class="menu mr-3" routerLink="/list-orden-carga">Orden de Carga</a>
+                <a *ngIf="estado" class="menu mr-3" (click)="openDialog()">Usuario</a>
+                <a target="_blank" rel="noopener noreferrer" (click)="cerrar()"> <i class="fas fa-sign-out-alt"></i></a>
+            </span>
+        </div>
+    </nav>
+</div>

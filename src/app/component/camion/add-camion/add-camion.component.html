@@ -1,0 +1,318 @@
+<div class="col-md-12">
+  <form novalidate (ngSubmit)="save();" #camionForm="ngForm">
+  <div class="row">
+    <div class="col-md-6 mt-3">
+      <h4 style="color: green">Registro de camiones</h4>
+    </div>
+    <div class="col-md-6 d-flex justify-content-end">
+      <button class="btn btn-sm btn-success mb-3 mt-3" type="button" (click)="cerrar()">
+        Cerrar
+      </button>
+    </div>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row ml-1 mr-1 mt-1">
+              <div class="col-md-6">
+                <div class="mb-1">
+                  <label for="tipocamion" class="form-label">Tipos de camiones:</label>
+                  <select class="form-control form-control-sm" id="tipocamion" [(ngModel)]="camion.tipocamion" name="tipocamion">
+                    <option value="Camion">Camion</option>
+                    <option value="Tractocamion">Tractocamion</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="col-md-12">
+                  <div class="mb-1">
+                    <label for="tipocarroseria" class="form-label">Tipos de carrosería:</label>
+                    <select class="form-control form-control-sm" id="tipocarroseria" [(ngModel)]="camion.tipocarroseria" name="tipocarroseria">
+                      <option value="Carreta">Carreta</option>
+                      <option value="Acoplado">Acoplado</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Tracto:</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Tracto"
+                  id="tracto" 
+                  [(ngModel)]="camion.tracto" 
+                  name="tracto"
+                  required="required"
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Año:</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  placeholder="Ingrese el año"
+                  id="anno"
+                  [(ngModel)]="camion.anno" 
+                  name="anno"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Ejes:</label>
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  placeholder="Ejes"
+                  id="ejes"
+                  [(ngModel)]="camion.ejes" 
+                  name="ejes"
+                  required="required"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="marca" class="form-label">Marca:</label>
+                <div class="input-group mb-1">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder="Elige una marca"
+                    name="marca"
+                    id="marca"
+                    [(ngModel)]="camion.marca.descripcion" 
+                    #marca="ngModel"
+                    disabled="disabled"
+                  />
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    type="button"
+                    (click)="openDialogMarca(1)"
+                  >
+                    Buscar
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Color:</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Elige un color"
+                  id="color"
+                  [(ngModel)]="camion.color" 
+                  name="color"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label">Tara:</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Elige la tara"
+                  id="tara"
+                  [(ngModel)]="camion.tara" 
+                  name="tara"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Modelo:</label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Elige el modelo"
+                  id="modelo"
+                  [(ngModel)]="camion.modelo" 
+                  name="modelo"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Chassis:</label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Ingrese el nro de chassis"
+                  id="chassis"
+                  [(ngModel)]="camion.chassis" 
+                  name="chassis"
+                  required="required"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="cantidad" class="form-label"
+                  >Cantidad:</label
+                >
+                <input
+                  type="number"
+                  class="form-control form-control-sm"
+                  placeholder="Ingrese la cantidad"
+                  id="cantidad"
+                  [(ngModel)]="camion.cantidad" 
+                  name="cantidad"
+                  required="required"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Carreta:</label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Carreta"
+                  id="carreta"
+                  [(ngModel)]="camion.carreta" 
+                  name="carreta"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="marcaCarreta" class="form-label">Marca:</label>
+                <div class="input-group mb-1">
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    placeholder="Elige una marca"
+                    name="marcaCarreta"
+                    id="marcaCarreta"
+                    [(ngModel)]="camion.marcacarreta.descripcion" 
+                    #marcaCarreta="ngModel"
+                    disabled="disabled"
+                  />
+                  <button
+                    class="btn btn-outline-success btn-sm"
+                    type="button"
+                    (click)="openDialogMarca(2)"
+                  >
+                    Buscar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <div class="mb-1">
+                <label for="exampleFormControlInput1" class="form-label"
+                  >Tipo:</label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Tipo"
+                  id="tipo"
+                  [(ngModel)]="camion.tipo" 
+                  name="tipo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="card">
+        <div class="row m-1">
+          <div class="col-md-6">
+            <label for="carga" class="col-form-label">Chofer:</label>
+            <div class="input-group mb-1">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Elige un chofer"
+                name="chofernombre"
+                id="chofernombre"
+                [(ngModel)]="camion.chofer.nombre" 
+                #chofernombre="ngModel"
+                disabled="disabled"
+              />
+              <button
+                class="btn btn-outline-success btn-sm"
+                type="button"
+                (click)="openDialogChofer()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="carga" class="col-form-label">Propietario:</label>
+            <div class="input-group mb-1">
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                placeholder="Elige el propietario"
+                name="propietarionombre"
+                id="propietarionombre"
+                [(ngModel)]="camion.propietario.nombre" 
+                #propietarionombre="ngModel"
+                disabled="disabled"
+              />
+              <button
+                class="btn btn-outline-success btn-sm"
+                type="button"
+                (click)="openDialogPropietario()"
+              >
+                Buscar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-grid gap-2 col-12 mx-auto mt-3">
+      <button class="btn btn-primary" type="submit" [disabled]="!camionForm.valid">{{button}}</button>
+    </div>
+  </div>
+  </form>
+</div>

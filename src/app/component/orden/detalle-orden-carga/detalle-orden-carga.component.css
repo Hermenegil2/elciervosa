@@ -1,0 +1,41 @@
+.logo-orden {
+    padding-left: 10%;
+    width: 90%;
+}
+
+.contenedor {
+    width: 20.5cm;
+    height: 12.5cm;
+}
+
+.logo-report {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+  
+  .preport {
+    margin: 0px !important;
+  }
+  
+  .pciervo {
+    margin: 0px !important;
+  }
+
+  .phr {
+    margin: 0px !important;
+    border: none;
+    height: 1px;
+    background-color: gray;
+  }
+
+  p {
+    margin: 0px !important;
+    font-size: 11px;
+  }
+  
+  .pdeclaro {
+    margin: 0px !important;
+    font-size: 8px;
+  }
+

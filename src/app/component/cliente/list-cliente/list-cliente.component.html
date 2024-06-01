@@ -1,0 +1,35 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Listado de Clientes</h4>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-4 mt-4" (click)="openDialogNuevo()">Nuevo</button>
+            <button class="btn btn-sm btn-success mb-4 mt-4 ml-4" (click)="cerrar()">Cerrar</button>
+        </div>
+        <div class="col-md-12">
+            <input type="text" class="form-control form-control-sm"  name="buscar" id="buscar"  [(ngModel)]="buscar" placeholder="Presione ENTER para Buscar por nombre, apellido o ruc" (keydown.enter)="list(buscar)">
+            <table class="table table-sm table-hover">
+                <thead class="bg-success text-dark">
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>CI/RUC</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th *ngIf="estadoPermiso != 0">Acción</th>
+                </thead>
+                <tbody *ngFor="let cliente of cliente">
+                    <td (click)="pasar(cliente)">{{cliente.id}}</td>
+                    <td (click)="pasar(cliente)">{{cliente.nombre}} {{cliente.apellido}}</td>
+                    <td (click)="pasar(cliente)">{{cliente.ruc}}</td>
+                    <td (click)="pasar(cliente)">{{cliente.telefono}}</td>
+                    <td (click)="pasar(cliente)">{{cliente.direccion}}</td>
+                    <td *ngIf="estadoPermiso != 0">
+                        <a (click)="update(cliente)"><i class="fa fa-edit text-info mr-2" aria-hidden="true"></i></a>
+                        <a (click)="delete(cliente.id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,529 @@
+<app-menu-orden-carga></app-menu-orden-carga>
+<div class="col-md-12 mt-5">
+    <form novalidate (ngSubmit)="save();" #ordenCargaForm="ngForm">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Orden de Carga</h4>
+            <hr>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-4 mt-4 mr-4" routerLink="/list-orden-carga" type="button">Volver</button>
+            <button class="btn btn-sm btn-success mb-4 mt-4" type="submit" [disabled]="!ordenCargaForm.valid">Registrar</button>
+        </div>          
+        <div class="col-md-4">
+            <img class="logo-orden" src="../../../../assets/img/logo.png" alt="">
+        </div>
+        <div class="col-md-4">
+            <div class="form-group row mb-1">
+                <label for="cliente" class="col-form-label col-sm-2">Cliente:</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <input type="text" id="nombre" name="nombre" placeholder="Selecciona un cliente"  [(ngModel)]="ordenCarga.cliente.nombre" #nombre="ngModel" class="form-control form-control-sm" disabled="disabled">
+                        <button class="btn btn-outline-success btn-sm" (click)="openDialogCliente()" type="button">Buscar</button>
+                    </div>                      
+                </div>
+            </div>
+
+            <div class="form-group row mb-1">
+                <label for="carga" class="col-form-label col-sm-2">Carga:</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-1">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un tipo de carga"  name="descripcionCarga" id="descripcionCarga"  [(ngModel)]="ordenCarga.carga.descripcion" #descripcionCarga="ngModel" disabled="disabled">
+                        <button class="btn btn-outline-success btn-sm" (click)="openDialogCarga()" type="button" id="button-addon2">Buscar</button>
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="form-group row mb-1">
+                <label for="origen" class="col-form-label col-sm-2">Origen:</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un origen" name="descripcionOrigen" id="descripcionOrigen"  [(ngModel)]="ordenCarga.direccionOrigen.descripcion" #descripcionOrigen="ngModel" disabled="disabled">
+                        <button class="btn btn-outline-success btn-sm" (click)="openDialogDireccion(1)" type="button">Buscar</button>
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="form-group row mb-1">
+                <label for="destino" class="col-form-label col-sm-2">Destino:</label>
+                <div class="col-sm-10">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un destino" name="descripcionDestino" id="descripcionDestino"  [(ngModel)]="ordenCarga.direccionDestino.descripcion" #descripcionDestino="ngModel" disabled="disabled">
+                        <button class="btn btn-outline-success btn-sm" (click)="openDialogDireccion(2)" type="button">Buscar</button>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group row mb-2">
+                <label for="ruc" class="col-form-label col-sm-3">RUC:</label>
+                <div class="col-sm-9">
+                    <label for="ruc" class="form-control form-control-sm">{{ordenCarga.cliente.ruc}}</label>
+                </div>
+            </div>
+                        
+            <div class="form-group row mb-1">
+                <label for="nroref" class="col-form-label col-sm-3">Nº Ref:</label>
+                <div class="col-sm-9">
+                    <input class="form-control form-control-sm" type="number" id="nroref" name="nroref" [(ngModel)]="ordenCarga.nroref" #nroref="ngModel">
+                </div>
+            </div>
+
+            <div class="form-group row mb-1">
+                <label for="notas" class="col-form-label col-sm-3">Notas:</label>
+                <div class="col-sm-9">
+                    <input class="form-control form-control-sm" type="text" name="notas" id="notas"  [(ngModel)]="ordenCarga.notas" #notas="ngModel">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-3">Tracto:</label>
+                <div class="col-sm-9">
+                    <div class="input-group mb-1">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un Tractocamión" id="tracto" name="tracto" [(ngModel)]="ordenCarga.camion.tracto" #tracto="ngModel" disabled="disabled">
+                        <button class="btn btn-outline-success btn-sm" (click)="openDialogCamion()" type="button">Buscar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-3">Año:</label>
+                <div class="col-sm-9">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.anno}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-3">Ejes:</label>
+                <div class="col-sm-9">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.ejes}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-3">Carreta:</label>
+                <div class="col-sm-9">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.carreta}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Marca:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{marca.descripcion}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Color:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.color}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Tara:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.tara}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Marca:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{marcaCarreta.descripcion}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Modelo:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.modelo}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="cant" class="col-form-label col-sm-2">Chassis:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.chassis}}</label>
+                </div>
+            </div>
+            <div class="form-group row mb-1  mt-5">
+                <label for="cant" class="col-form-label col-sm-2">Tipo:</label>
+                <div class="col-sm-10">
+                    <label class="form-control form-control-sm">{{ordenCarga.camion.tipo}}</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group row mb-1">
+                        <label for="cant" class="col-form-label col-sm-2">Chofer:</label>
+                        <div class="col-sm-10">
+                            <label class="form-control form-control-sm">{{chofer.nombre}} {{chofer.apellido}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row mb-1">
+                                <label for="cant" class="col-form-label col-sm-2">C.I.:</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control form-control-sm">{{chofer.ruc}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row mb-1">
+                                <label for="cant" class="col-form-label col-sm-2">Tel.:</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control form-control-sm">{{chofer.telefono}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row mb-1">
+                        <label for="cant" class="col-form-label col-sm-2">Propietario:</label>
+                        <div class="col-sm-10">
+                            <label class="form-control form-control-sm">{{propietario.nombre}} {{propietario.apellido}}</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row mb-1">
+                                <label for="cant" class="col-form-label col-sm-2">RUC:</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control form-control-sm">{{propietario.ruc}}</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row mb-1">
+                                <label for="cant" class="col-form-label col-sm-2">Direc.:</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control form-control-sm">{{propietario.direccion}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+
+
+<!----------reporte -->
+<div id="htmlData" class="contenedor posicion">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="logo-report" src="../../../../assets/img/logo.png" alt="logo">
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-dark pciervo">EL CIERVO S.A.</h4>
+                <p class="preport">RUC: 80086510-3</p>
+                <p class="preport">Avd. 14 de mayo y 1º de marzo</p>
+                <p class="preport">Tel.: 0985 895 188</p>
+                <p class="preport">logistica@elciervosa.com.py</p>
+            </div>
+            <div class="col-md-2">
+                <ngx-qrcode
+                    [elementType]="elementType"
+                    [value]="value"
+                    cssClass="aclass"
+                    [errorCorrectionLevel]="errorCorrectionLevel">
+                </ngx-qrcode>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="text-dark">ORDEN DE CARGA</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <p class="preport">Nº:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{ordenCarga.nroorden}}</p>
+                            </div>
+                            <div class="col-6 text-left">
+                                <p class="preport">Fecha:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{ordenCarga.fecha | date: 'dd-MM-yyyy HH:mm'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <p>VALIDO POR 3 DIAS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12">
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Cliente:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.cliente.nombre}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Carga:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.carga.descripcion}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Origen:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.direccionOrigen.descripcion}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Destino:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.direccionDestino.descripcion}}</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-2">
+                        <p class="preport">Notas:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.notas}}</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="preport">Nº Ref:</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="preport">{{ordenCarga.nroref}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">RUC:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{ordenCarga.cliente.ruc}}</p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12 mb-2 mt-2">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Tractor:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.camion.tracto}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Año:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.camion.anno}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Ejes:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.camion.ejes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Marca:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{marca.descripcion}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Color:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.camion.color}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Tara:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.camion.tara}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-3">
+                       <P>Modelo:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.camion.modelo}}</P>
+                    </div>
+                    <div class="col-md-3">
+                        <P>Chassis:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.camion.chassis}}</P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">Cant.:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{cantidadFormato}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Carreta:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ordenCarga.camion.carreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Marca:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{marcaCarreta.descripcion}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Tipo:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.camion.tipo}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Chofer:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p class="pl-3">{{chofer.nombre}} {{chofer.apellido}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>C.I.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{chofer.ruc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>Tel.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{chofer.telefono}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Propietario:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p>{{propietario.nombre}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>C.I./RUC:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{propietario.ruc}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Dirección:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{propietario.direccion}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12">
+        <p class="pdeclaro">DECLARO HACER RECIBIDO LA CARGA QUE CONSTA EN ESTE DOCUMENTO EN PERFECTO ESTADO, COMPROMETIENDOME A ENTREGAR AL DESTINATARIO EN LAS MISMAS CONDICIONES; Y</p>
+        <p class="pdeclaro">ASUMIENDO PLENA RESPONSABILIDAD POR CUALQUIER DAÑO PERJUICIOS O FALTAS QUE VENGAN A OCURRIR.</p>
+    </div>
+    </div>

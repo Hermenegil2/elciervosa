@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Listado de Camiones</h4>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-4 mt-4" (click)="openDialogNuevo()">Nuevo</button>
+            <button class="btn btn-sm btn-success mb-4 mt-4 ml-4" (click)="cerrar()">Cerrar</button>
+        </div>
+        <div class="col-md-12">
+            <input type="text" class="form-control form-control-sm"  name="buscar" id="buscar"  [(ngModel)]="buscar" placeholder="Presione ENTER para Buscar por nro de chapa" (keydown.enter)="list(buscar)">
+            <table class="table table-sm">
+                <thead class="bg-success text-dark">
+                    <th>#</th>
+                    <th>CHAPA</th>
+                    <th>Color</th>
+                    <th>Chassis</th>
+                    <th>Tipo Camion</th>
+                    <th>Tipo Carroseria</th>
+                    <th *ngIf="estadoPermiso != 0">Acción</th>
+                </thead>
+                <tbody *ngFor="let camion of camion">
+                    <td (click)="pasar(camion)">{{camion.id}}</td>
+                    <td (click)="pasar(camion)">{{camion.tracto}}</td>
+                    <td (click)="pasar(camion)">{{camion.color}}</td>
+                    <td (click)="pasar(camion)">{{camion.chassis}}</td>
+                    <td (click)="pasar(camion)">{{camion.tipocamion}}</td>
+                    <td (click)="pasar(camion)">{{camion.tipocarroseria}}</td>
+                    <td *ngIf="estadoPermiso != 0">
+                        <a (click)="update(camion)"><i class="fa fa-edit text-info mr-2" aria-hidden="true"></i></a>
+                        <a (click)="delete(camion.id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Listado de Dirección</h4>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-4 mt-4" (click)="openDialogNuevo()">Nuevo</button>
+            <button class="btn btn-sm btn-success mb-4 mt-4 ml-4" (click)="cerrar()">Cerrar</button>
+        </div>
+        <div class="col-md-12">
+            <input type="text" class="form-control form-control-sm"  name="buscar" id="buscar"  [(ngModel)]="buscar" placeholder="Presione ENTER para Buscar por descripcion" (keydown.enter)="list(buscar)">
+            <table class="table table-sm">
+                <thead class="bg-success text-dark">
+                    <td>#</td>
+                    <td>Descripción</td>
+                    <td *ngIf="estadoPermiso != 0">Acción</td>
+                </thead>
+                <tbody *ngFor="let direccion of direccion">
+                    <th (click)="pasar(direccion)">{{direccion.id}}</th>
+                    <th (click)="pasar(direccion)">{{direccion.descripcion}}</th>
+                    <td *ngIf="estadoPermiso != 0">
+                        <a (click)="update(direccion)"><i class="fa fa-edit text-info mr-2" aria-hidden="true"></i></a>
+                        <a (click)="delete(direccion.id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                    </td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+.navbar {
+    background: green !important;
+  }
+
+  .logo-orden {
+    width: 60px;
+  }
+  
+  .navbar a {
+    color: white !important;
+  }
+
+  .menu {
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+
+  .fexe-menu {
+    position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #f0f0f0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+}

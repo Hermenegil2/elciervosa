@@ -1,0 +1,33 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Cambiar Contraseña</h4>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-2 mt-2" (click)="cerrar()">Cerrar</button>
+        </div>
+        <div class="col-md-12">
+
+            <hr>
+
+            <form novalidate (ngSubmit)="save(userForm)" #userForm="ngForm">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="password" class="form-label">Nueva contraseña:</label>
+                    <input type="password" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" class="form-control form-control-sm" required>
+                  </div>
+                  <div class="col-md-12 mt-2">
+                    <label for="confirpassword" class="form-label">Confirmar contraseña:</label>
+                    <input type="password" id="confirpassword" name="confirpassword" [(ngModel)]="user.confirPassword" #confirpassword="ngModel" class="form-control form-control-sm" required>
+                  </div>
+                  <div class="col-md-12" *ngIf="passwordMatchError">
+                    <div class="alert alert-danger" role="alert">Las contraseñas no coinciden.</div>
+                  </div>
+                  <div class="d-grid gap-2 col-12 mx-auto mt-3 mb-2">
+                    <button class="btn btn-primary" type="submit" [disabled]="!userForm.valid">Guardar</button>
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,320 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+        <button class="btn btn-primary mt-1" (click)="getReport()">Descargar PNG<i class="fas fa-download text-white"></i></button>
+      </div>
+      <div class="col-md-6 text-center">
+        <button class="btn btn-danger mt-1" (click)="downloadPDF()">Descargar PDF<i class="fas fa-download text-white"></i></button>
+      </div>
+    </div>
+  </div>
+<hr>
+<div id="htmlData" class="contenedor posicion">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="logo-report" src="../../../../assets/img/logo.png" alt="logo">
+            </div>
+            <div class="col-md-3">
+                <h4 class="text-dark pciervo">EL CIERVO S.A.</h4>
+                <p class="preport">RUC: 80086510-3</p>
+                <p class="preport">Avd. 14 de mayo y 1º de marzo</p>
+                <p class="preport">Tel.: 0985 895 188</p>
+                <p class="preport">logistica@elciervosa.com.py</p>
+            </div>
+            <div class="col-md-2">
+                <ngx-qrcode
+                    [elementType]="elementType"
+                    [value]="value"
+                    cssClass="aclass"
+                    [errorCorrectionLevel]="errorCorrectionLevel">
+                </ngx-qrcode>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="text-dark">ORDEN DE CARGA</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <p class="preport">Nº:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{ordenCarga.nroorden}}</p>
+                            </div>
+                            <div class="col-6 text-left">
+                                <p class="preport">Fecha:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{ordenCarga.fecha | date: 'dd-MM-yyyy HH:mm'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <p>VALIDO POR 3 DIAS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12">
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Cliente:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.nombre}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Carga:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.descripcioncarga}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Origen:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.descripcionorigen}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Destino:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.descripciondestino}}</p>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-2">
+                        <p class="preport">Notas:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{ordenCarga.notas}}</p>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="preport">Nº Ref:</p>
+                    </div>
+                    <div class="col-md-8">
+                        <p class="preport">{{ordenCarga.nroref}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">RUC:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{ordenCarga.ruccliente}}</p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12 mb-2 mt-2">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Tractor:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.tracto}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Año:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.anno}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Ejes:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.ejes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Marca:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.descripcionmarca}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Color:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.color}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Tara:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{ordenCarga.tara}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-3">
+                       <P>Modelo:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.modelo}}</P>
+                    </div>
+                    <div class="col-md-3">
+                        <P>Chassis:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.chassis}}</P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">Cant.:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{cantidadFormato}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Carreta:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ordenCarga.carreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Marca:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ordenCarga.descripcionmarcacarreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Tipo:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.tipo}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Chofer:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p class="pl-3">{{ordenCarga.nombrechofer}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>C.I.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{ordenCarga.rucchofer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>Tel.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{ordenCarga.telefono}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Propietario:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p>{{ordenCarga.nombrepropietario}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>C.I./RUC:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.rucpropietario}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Dirección:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.direccion}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12">
+        <p class="pdeclaro">DECLARO HACER RECIBIDO LA CARGA QUE CONSTA EN ESTE DOCUMENTO EN PERFECTO ESTADO, COMPROMETIENDOME A ENTREGAR AL DESTINATARIO EN LAS MISMAS CONDICIONES; Y</p>
+        <p class="pdeclaro">ASUMIENDO PLENA RESPONSABILIDAD POR CUALQUIER DAÑO PERJUICIOS O FALTAS QUE VENGAN A OCURRIR.</p>
+    </div>
+    </div>

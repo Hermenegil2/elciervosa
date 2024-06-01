@@ -1,0 +1,11 @@
+.sobrenosotros {
+  background: rgb(250, 250, 200);
+}
+
+.iniciosobre {
+  color: green;
+}
+
+.sobrenosotros p {
+  color: black !important;
+}

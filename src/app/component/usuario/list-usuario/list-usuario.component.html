@@ -1,0 +1,30 @@
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6 mt-3">
+            <h4 style="color: green;">Listado de Usuarios</h4>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end">
+            <button class="btn btn-sm btn-success mb-4 mt-4" (click)="openDialogNuevo()">Nuevo</button>
+            <button class="btn btn-sm btn-success mb-4 mt-4 ml-4" (click)="cerrar()">Cerrar</button>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-sm table-hover">
+                <thead class="bg-success text-dark">
+                    <th>#</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Acción</th>
+                </thead>
+                <tbody *ngFor="let user of usuario">
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}} {{user.lastname}}</td>
+                    <td>{{user.email}}</td>
+                    <td><a (click)="openDialog(user.id)" style="cursor: pointer;">Cambiar Contraseña</a></td>
+                    <td><a (click)="delete(user.id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i>
+                    </a></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
