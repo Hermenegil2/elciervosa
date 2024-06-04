@@ -18,7 +18,7 @@
                 <label for="cliente" class="col-form-label col-sm-2">Cliente:</label>
                 <div class="col-sm-10">
                     <div class="input-group mb-1">
-                        <input type="text" id="nombre" name="nombre" placeholder="Selecciona un cliente"  [(ngModel)]="ordenCarga.cliente.nombre" #nombre="ngModel" class="form-control form-control-sm" disabled="disabled">
+                        <input type="text" id="nombre" name="nombre" placeholder="Selecciona un cliente"  [(ngModel)]="ordenCarga.nombrec" #nombre="ngModel" class="form-control form-control-sm" disabled="disabled">
                         <button class="btn btn-outline-success btn-sm" (click)="openDialogCliente()" type="button">Buscar</button>
                     </div>                      
                 </div>
@@ -28,7 +28,7 @@
                 <label for="carga" class="col-form-label col-sm-2">Carga:</label>
                 <div class="col-sm-10">
                     <div class="input-group mb-1">
-                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un tipo de carga"  name="descripcionCarga" id="descripcionCarga"  [(ngModel)]="ordenCarga.carga.descripcion" #descripcionCarga="ngModel" disabled="disabled">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un tipo de carga"  name="descripcionCarga" id="descripcionCarga"  [(ngModel)]="ordenCarga.descripcionca" #descripcionCarga="ngModel" disabled="disabled">
                         <button class="btn btn-outline-success btn-sm" (click)="openDialogCarga()" type="button" id="button-addon2">Buscar</button>
                     </div> 
                 </div>
@@ -38,7 +38,7 @@
                 <label for="origen" class="col-form-label col-sm-2">Origen:</label>
                 <div class="col-sm-10">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un origen" name="descripcionOrigen" id="descripcionOrigen"  [(ngModel)]="ordenCarga.direccionOrigen.descripcion" #descripcionOrigen="ngModel" disabled="disabled">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un origen" name="descripcionOrigen" id="descripcionOrigen"  [(ngModel)]="ordenCarga.descripciono" #descripcionOrigen="ngModel" disabled="disabled">
                         <button class="btn btn-outline-success btn-sm" (click)="openDialogDireccion(1)" type="button">Buscar</button>
                     </div> 
                 </div>
@@ -48,7 +48,7 @@
                 <label for="destino" class="col-form-label col-sm-2">Destino:</label>
                 <div class="col-sm-10">
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un destino" name="descripcionDestino" id="descripcionDestino"  [(ngModel)]="ordenCarga.direccionDestino.descripcion" #descripcionDestino="ngModel" disabled="disabled">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un destino" name="descripcionDestino" id="descripcionDestino"  [(ngModel)]="ordenCarga.descripciond" #descripcionDestino="ngModel" disabled="disabled">
                         <button class="btn btn-outline-success btn-sm" (click)="openDialogDireccion(2)" type="button">Buscar</button>
                     </div> 
                 </div>
@@ -58,7 +58,7 @@
             <div class="form-group row mb-2">
                 <label for="ruc" class="col-form-label col-sm-3">RUC:</label>
                 <div class="col-sm-9">
-                    <label for="ruc" class="form-control form-control-sm">{{ordenCarga.cliente.ruc}}</label>
+                    <label for="ruc" class="form-control form-control-sm">{{ordenCarga.rucc}}</label>
                 </div>
             </div>
                         
@@ -85,7 +85,7 @@
                 <label for="cant" class="col-form-label col-sm-3">Tracto:</label>
                 <div class="col-sm-9">
                     <div class="input-group mb-1">
-                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un Tractocamión" id="tracto" name="tracto" [(ngModel)]="ordenCarga.camion.tracto" #tracto="ngModel" disabled="disabled">
+                        <input type="text" class="form-control form-control-sm" placeholder="Selecciona un Tractocamión" id="tracto" name="tracto" [(ngModel)]="ordenCarga.tracto" #tracto="ngModel" disabled="disabled">
                         <button class="btn btn-outline-success btn-sm" (click)="openDialogCamion()" type="button">Buscar</button>
                     </div>
                 </div>
@@ -93,19 +93,19 @@
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-3">Año:</label>
                 <div class="col-sm-9">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.anno}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.anno}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-3">Ejes:</label>
                 <div class="col-sm-9">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.ejes}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.ejes}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-3">Carreta:</label>
                 <div class="col-sm-9">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.carreta}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.carreta}}</label>
                 </div>
             </div>
         </div>
@@ -113,25 +113,25 @@
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Marca:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{marca.descripcion}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.descripcionmarca}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Color:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.color}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.color}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Tara:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.tara}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.tara}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Marca:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{marcaCarreta.descripcion}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.descripcionmarcacarreta}}</label>
                 </div>
             </div>
         </div>
@@ -139,19 +139,19 @@
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Modelo:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.modelo}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.modelo}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1">
                 <label for="cant" class="col-form-label col-sm-2">Chassis:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.chassis}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.chassis}}</label>
                 </div>
             </div>
             <div class="form-group row mb-1  mt-5">
                 <label for="cant" class="col-form-label col-sm-2">Tipo:</label>
                 <div class="col-sm-10">
-                    <label class="form-control form-control-sm">{{ordenCarga.camion.tipo}}</label>
+                    <label class="form-control form-control-sm">{{ordenCarga.tipo}}</label>
                 </div>
             </div>
         </div>
@@ -162,7 +162,7 @@
                     <div class="form-group row mb-1">
                         <label for="cant" class="col-form-label col-sm-2">Chofer:</label>
                         <div class="col-sm-10">
-                            <label class="form-control form-control-sm">{{chofer.nombre}} {{chofer.apellido}}</label>
+                            <label class="form-control form-control-sm">{{ordenCarga.nombrechofer}}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -170,7 +170,7 @@
                             <div class="form-group row mb-1">
                                 <label for="cant" class="col-form-label col-sm-2">C.I.:</label>
                                 <div class="col-sm-10">
-                                    <label class="form-control form-control-sm">{{chofer.ruc}}</label>
+                                    <label class="form-control form-control-sm">{{ordenCarga.rucchofer}}</label>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +178,7 @@
                             <div class="form-group row mb-1">
                                 <label for="cant" class="col-form-label col-sm-2">Tel.:</label>
                                 <div class="col-sm-10">
-                                    <label class="form-control form-control-sm">{{chofer.telefono}}</label>
+                                    <label class="form-control form-control-sm">{{ordenCarga.telefonochofer}}</label>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,7 @@
                     <div class="form-group row mb-1">
                         <label for="cant" class="col-form-label col-sm-2">Propietario:</label>
                         <div class="col-sm-10">
-                            <label class="form-control form-control-sm">{{propietario.nombre}} {{propietario.apellido}}</label>
+                            <label class="form-control form-control-sm">{{ordenCarga.nombrepropietario}}</label>
                         </div>
                     </div>
                     <div class="row">
@@ -196,7 +196,7 @@
                             <div class="form-group row mb-1">
                                 <label for="cant" class="col-form-label col-sm-2">RUC:</label>
                                 <div class="col-sm-10">
-                                    <label class="form-control form-control-sm">{{propietario.ruc}}</label>
+                                    <label class="form-control form-control-sm">{{ordenCarga.rucpropietario}}</label>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +204,7 @@
                             <div class="form-group row mb-1">
                                 <label for="cant" class="col-form-label col-sm-2">Direc.:</label>
                                 <div class="col-sm-10">
-                                    <label class="form-control form-control-sm">{{propietario.direccion}}</label>
+                                    <label class="form-control form-control-sm">{{ordenCarga.direccionpropietario}}</label>
                                 </div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
                         <p class="preport">Cliente:</p>
                     </div>
                     <div class="col-md-10">
-                        <p class="preport">{{ordenCarga.cliente.nombre}}</p>
+                        <p class="preport">{{ordenCarga.nombrec}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -284,7 +284,7 @@
                         <p class="preport">Carga:</p>
                     </div>
                     <div class="col-md-10">
-                        <p class="preport">{{ordenCarga.carga.descripcion}}</p>
+                        <p class="preport">{{ordenCarga.descripcionca}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -292,7 +292,7 @@
                         <p class="preport">Origen:</p>
                     </div>
                     <div class="col-md-10">
-                        <p class="preport">{{ordenCarga.direccionOrigen.descripcion}}</p>
+                        <p class="preport">{{ordenCarga.descripciono}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -300,7 +300,7 @@
                         <p class="preport">Destino:</p>
                     </div>
                     <div class="col-md-10">
-                        <p class="preport">{{ordenCarga.direccionDestino.descripcion}}</p>
+                        <p class="preport">{{ordenCarga.descripciond}}</p>
                     </div>
                 </div>
                 <div class="row mb-2">
@@ -329,7 +329,7 @@
                         <p class="preport">RUC:</p>
                     </div>
                     <div class="col-md-9">
-                        <p class="preport">{{ordenCarga.cliente.ruc}}</p>
+                        <p class="preport">{{ordenCarga.rucc}}</p>
                     </div>
                 </div>
             </div>
@@ -347,19 +347,19 @@
                                 <p>Tractor:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ordenCarga.camion.tracto}}</p>
+                                <p>{{ordenCarga.tracto}}</p>
                             </div>
                             <div class="col-md-6">
                                 <p>Año:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ordenCarga.camion.anno}}</p>
+                                <p>{{ordenCarga.anno}}</p>
                             </div>
                             <div class="col-md-6">
                                 <p>Ejes:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ordenCarga.camion.ejes}}</p>
+                                <p>{{ordenCarga.ejes}}</p>
                             </div>
                         </div>
                     </div>
@@ -369,19 +369,19 @@
                                 <p>Marca:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{marca.descripcion}}</p>
+                                <p>{{ordenCarga.descripcionmarca}}</p>
                             </div>
                             <div class="col-md-6">
                                 <p>Color:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ordenCarga.camion.color}}</p>
+                                <p>{{ordenCarga.color}}</p>
                             </div>
                             <div class="col-md-6">
                                 <p>Tara:</p>
                             </div>
                             <div class="col-md-6">
-                                <p>{{ordenCarga.camion.tara}}</p>
+                                <p>{{ordenCarga.tara}}</p>
                             </div>
                         </div>
                     </div>
@@ -393,13 +393,13 @@
                        <P>Modelo:</P>
                     </div>
                     <div class="col-md-9">
-                        <P>{{ordenCarga.camion.modelo}}</P>
+                        <P>{{ordenCarga.modelo}}</P>
                     </div>
                     <div class="col-md-3">
                         <P>Chassis:</P>
                     </div>
                     <div class="col-md-9">
-                        <P>{{ordenCarga.camion.chassis}}</P>
+                        <P>{{ordenCarga.chassis}}</P>
                     </div>
                 </div>
             </div>
@@ -423,7 +423,7 @@
                                         <p>Carreta:</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{ordenCarga.camion.carreta}}</p>
+                                        <p>{{ordenCarga.carreta}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -433,7 +433,7 @@
                                         <p>Marca:</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>{{marcaCarreta.descripcion}}</p>
+                                        <p>{{ordenCarga.descripcionmarcacarreta}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -445,7 +445,7 @@
                                 <p>Tipo:</p>
                             </div>
                             <div class="col-md-9">
-                                <p>{{ordenCarga.camion.tipo}}</p>
+                                <p>{{ordenCarga.tipo}}</p>
                             </div>
                         </div>
                     </div>
@@ -457,7 +457,7 @@
                         <p>Chofer:</p>
                     </div>
                     <div class="col-md-11">
-                        <p class="pl-3">{{chofer.nombre}} {{chofer.apellido}}</p>
+                        <p class="pl-3">{{ordenCarga.nombrechofer}}</p>
                     </div>
                 </div>
             </div>
@@ -469,7 +469,7 @@
                                 <p>C.I.:</p>
                             </div>
                             <div class="col-md-10">
-                                <p>{{chofer.ruc}}</p>
+                                <p>{{ordenCarga.rucchofer}}</p>
                             </div>
                         </div>
                     </div>
@@ -479,7 +479,7 @@
                                 <p>Tel.:</p>
                             </div>
                             <div class="col-md-10">
-                                <p>{{chofer.telefono}}</p>
+                                <p>{{ordenCarga.telefonochofer}}</p>
                             </div>
                         </div>
                     </div>
@@ -491,7 +491,7 @@
                         <p>Propietario:</p>
                     </div>
                     <div class="col-md-11">
-                        <p>{{propietario.nombre}}</p>
+                        <p>{{ordenCarga.nombrepropietario}}</p>
                     </div>
                 </div>
             </div>
@@ -503,7 +503,7 @@
                                 <p>C.I./RUC:</p>
                             </div>
                             <div class="col-md-9">
-                                <p>{{propietario.ruc}}</p>
+                                <p>{{ordenCarga.rucpropietario}}</p>
                             </div>
                         </div>
                     </div>
@@ -513,7 +513,7 @@
                                 <p>Dirección:</p>
                             </div>
                             <div class="col-md-9">
-                                <p>{{propietario.direccion}}</p>
+                                <p>{{ordenCarga.direccionpropietario}}</p>
                             </div>
                         </div>
                     </div>

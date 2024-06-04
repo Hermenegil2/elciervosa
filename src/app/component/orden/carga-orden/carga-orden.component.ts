@@ -42,6 +42,7 @@ export class CargaOrdenComponent {
   public propietario = new Propietario();
   public marca = new Marca();
   public marcaCarreta = new Marca();
+  private nroOrden: number;
 
   constructor(
     public dialog: MatDialog,
@@ -52,7 +53,9 @@ export class CargaOrdenComponent {
       this.max = 999999999;
       this.generatedNumbers = new Set<number>();
       this.ordenCarga.nroorden = parseInt(""+this.generate());
+      this.nroOrden = this.ordenCarga.nroorden;
       this.ordenCarga.fecha = new Date();
+      console.log(this.ordenCarga.nroorden);
  
     } 
 
@@ -75,7 +78,7 @@ export class CargaOrdenComponent {
         // Crear un enlace temporal para iniciar la descarga
         const link = document.createElement('a');
         link.href = img;
-        link.download = this.formatDate() +"-"+this.ordenCarga.nroorden+'-elciervosa.png';
+        link.download = this.formatDate() +"-"+this.nroOrden+'-elciervosa.png';
     
         // Añadir el enlace al documento, hacer clic en él, y luego eliminarlo
         document.body.appendChild(link);
@@ -102,11 +105,11 @@ export class CargaOrdenComponent {
     dialogRef.afterClosed().subscribe(result => { 
         if(result) {
           this.ordenCarga.id_cliente = result.id;
-          this.ordenCarga.cliente.nombre = result.nombre;
+          this.ordenCarga.nombrec = result.nombre;
           if(result.apellido) {
-            this.ordenCarga.cliente.nombre = result.nombre + ' ' +result.apellido;
+            this.ordenCarga.nombrec = result.nombre + ' ' +result.apellido;
           }
-          this.ordenCarga.cliente.ruc = result.ruc;
+          this.ordenCarga.rucc = result.ruc;
         }
     }); 
   } 
@@ -121,7 +124,7 @@ export class CargaOrdenComponent {
     dialogRef.afterClosed().subscribe(result => { 
         if(result) {
           this.ordenCarga.id_carga = result.id;
-          this.ordenCarga.carga.descripcion = result.descripcion;
+          this.ordenCarga.descripcionca = result.descripcion;
         }
     }); 
   } 
@@ -137,10 +140,10 @@ export class CargaOrdenComponent {
       if(result) {
         if(result.tipo == 1) {
           this.ordenCarga.id_direccionorigen = result.direccion.id;
-          this.ordenCarga.direccionOrigen.descripcion = result.direccion.descripcion;
+          this.ordenCarga.descripciono = result.direccion.descripcion;
         } else if(result.tipo == 2) {
           this.ordenCarga.id_direcciondestino = result.direccion.id;
-          this.ordenCarga.direccionDestino.descripcion = result.direccion.descripcion;
+          this.ordenCarga.descripciond = result.direccion.descripcion;
         }
       }
     }); 
@@ -155,7 +158,17 @@ export class CargaOrdenComponent {
   
     dialogRef.afterClosed().subscribe(result => { 
         if(result) {
-          this.ordenCarga.camion = result;
+          this.ordenCarga.anno = result.anno;
+          this.ordenCarga.ejes = result.ejes;
+          this.ordenCarga.carreta = result.carreta;
+          this.ordenCarga.color = result.color;
+          this.ordenCarga.tara = result.tara;
+          this.ordenCarga.modelo = result.modelo;
+          this.ordenCarga.chassis = result.chassis;
+          this.ordenCarga.tipo = result.tipo;
+          this.ordenCarga.tracto = result.tracto;
+          this.ordenCarga.id_camion = result.id;
+          this.ordenCarga.cantidad = result.cantidad;
           this.getChoferAndPropietario(result.id_chofer, result.id_propietario, result.id_marca, result.id_marcacarreta);
         }
     }); 
@@ -181,11 +194,11 @@ export class CargaOrdenComponent {
 
   save() {
     if(!this.estado) {
-      this.ordenCarga.id_camion = this.ordenCarga.camion.id;
       if(!this.validarCampo()) {
         this.estado = true;
-        this.cantidadFormato = this.formatNumberWithUnit(this.ordenCarga.camion.cantidad, 'KG');
+        this.cantidadFormato = this.formatNumberWithUnit(this.ordenCarga.cantidad, 'KG');
         this.ordenCarga.id_user = parseInt(""+sessionStorage.getItem("codigo"));
+        this.ordenCarga.nroorden = this.nroOrden;
         this.ordenCargaService.save(this.ordenCarga).subscribe( res => {
           const datos = res.message;
           this.downloadPNG();
@@ -203,18 +216,34 @@ export class CargaOrdenComponent {
     this
     this.camionService.getChoferId(idChofer).subscribe( res => {
       this.chofer = res;
+      if(!this.chofer.apellido) {
+        this.ordenCarga.nombrechofer = this.chofer.nombre;
+      } else {
+        this.ordenCarga.nombrechofer = this.chofer.nombre + " " + this.chofer.apellido;
+      }
+      this.ordenCarga.rucchofer = this.chofer.ruc;
+      this.ordenCarga.telefonochofer = this.chofer.telefono;
     });
 
     this.camionService.getPropietarioId(idPropietario).subscribe( res => {
       this.propietario = res;
+      if(!this.propietario.apellido) {
+        this.ordenCarga.nombrepropietario = this.propietario.nombre;
+      } else {
+        this.ordenCarga.nombrepropietario = this.propietario.nombre + " " + this.propietario.apellido;
+      }
+      this.ordenCarga.rucpropietario = this.propietario.ruc;
+      this.ordenCarga.direccionpropietario = this.propietario.direccion;
     });
 
     this.camionService.getMarcaId(idMarca).subscribe( res => {
       this.marca = res;
+      this.ordenCarga.descripcionmarca = this.marca.descripcion;
     });
 
     this.camionService.getMarcaId(idMarcaCarreta).subscribe( res => {
       this.marcaCarreta = res;
+      this.ordenCarga.descripcionmarcacarreta = this.marcaCarreta.descripcion;
     });
   }
 

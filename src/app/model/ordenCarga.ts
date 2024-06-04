@@ -20,4 +20,29 @@ export class OrdenCarga {
     fecha!: Date;
     nroorden!: number;
     id_user!: number;
+
+    //
+    nombrec!: string;
+    rucc!: string;
+    descripcionca!: string;
+    descripciono!: string;
+    descripciond!: string;
+    tracto!: string;
+    anno!: number;
+    ejes!: number;
+    carreta!: string;
+    descripcionmarca!: string;
+    color!: string;
+    tara!: string;
+    descripcionmarcacarreta!: string;
+    modelo!: string;
+    chassis!: string;
+    cantidad!: number;
+    tipo!: string;
+    nombrechofer!: string;
+    rucchofer!: string;
+    telefonochofer!: string;
+    nombrepropietario!: string;
+    rucpropietario!: string;
+    direccionpropietario!: string;
 }
