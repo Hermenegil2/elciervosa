@@ -11,6 +11,13 @@ import Swal from 'sweetalert2';
   styleUrls: ['./list-orden-carga.component.css']
 })
 export class ListOrdenCargaComponent implements OnInit {
+  items: any[] = [];
+  totalItems: number = 0;
+  totalPages: number = 0;
+  currentPage: number = 1;
+  pageSize: number = 20;
+  validarItem = 0;
+  estadoValidar = false;
 
   ordenCargas: any;
   public estadoPermiso = 0;
@@ -26,7 +33,31 @@ export class ListOrdenCargaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.list("9999999999");
+      //this.list("9999999999");
+      this.loadItems();
+  }
+
+  loadItems() {
+    this.spinner.show();
+    this.ordenCargaService.getOrdenCargaPag(this.currentPage, this.pageSize).subscribe(data => {
+      this.spinner.hide();
+      this.ordenCargas = data.items;
+      this.totalItems = data.totalItems;
+      this.totalPages = data.totalPages;
+      this.validarItem = this.ordenCargas.length;
+      if(this.validarItem >= 20) {
+        this.estadoValidar = false;
+      } else {
+        this.estadoValidar = true;
+      }
+    }, err => {
+      this.spinner.hide();
+    });
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    this.loadItems();
   }
 
   list(buscar: any) {

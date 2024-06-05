@@ -44,5 +44,13 @@
                 </tbody>
             </table>
         </div>
+        <div class="col-md-12 text-center mb-2">
+            <div class="paginacion">
+                <button class="pag" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+                <span class="ml-2 mr-2">Página {{ currentPage }} de {{ totalPages }}</span>
+                <button *ngIf="estadoValidar" class="pag"  (click)="goToPage(currentPage + 1)" disabled="disabled">Siguiente</button>
+                <button *ngIf="!estadoValidar" class="pag"  (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+              </div>
+        </div>
     </div>
 </div>
