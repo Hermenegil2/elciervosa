@@ -3,7 +3,6 @@
     <div class="row">
         <div class="col-md-6 mt-3">
             <h4 style="color: green;">Listado de Orden de Carga</h4>
-            <hr>
         </div>
         <div class="col-md-6 d-flex justify-content-end">
             <button class="btn btn-sm btn-success mb-4 mt-4" routerLink="/orden-carga">Nuevo</button>
@@ -30,7 +29,7 @@
                     <td>{{orden.tracto}}</td>
                     <td>{{orden.nroorden}}</td>
                     <td>{{orden.nombre}}</td>
-                    <td>{{orden.ruc}}</td>
+                    <td>{{orden.rucc}}</td>
                     <td>{{orden.direccionorigen}}</td>
                     <td>{{orden.direcciondestino}}</td>
                     <td *ngIf="estadoPermiso == 0">

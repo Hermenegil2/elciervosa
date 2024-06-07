@@ -36,3 +36,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a i {
   cursor: pointer;
 }
+
+.fila-inactiva {
+  background-color: rgb(255, 211, 57, 0.4);
+}

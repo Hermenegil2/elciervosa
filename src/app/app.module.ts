@@ -37,6 +37,9 @@ import { MenuOrdenCargaComponent } from './component/inicio/menu-orden-carga/men
 import { ListUsuarioComponent } from './component/usuario/list-usuario/list-usuario.component';
 import { AddUsuarioComponent } from './component/usuario/add-usuario/add-usuario.component';
 import { CambiarContrasenaComponent } from './component/usuario/cambiar-contrasena/cambiar-contrasena.component';
+import { ReporteOrdenCargaComponent } from './component/reporte/reporte-orden-carga/reporte-orden-carga.component';
+import { ReporteComponent } from './component/reporte/reporte/reporte.component';
+import { ReporteCamionesComponent } from './component/reporte/reporte-camiones/reporte-camiones.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { CambiarContrasenaComponent } from './component/usuario/cambiar-contrase
     MenuOrdenCargaComponent,
     ListUsuarioComponent,
     AddUsuarioComponent,
-    CambiarContrasenaComponent
+    CambiarContrasenaComponent,
+    ReporteOrdenCargaComponent,
+    ReporteComponent,
+    ReporteCamionesComponent
   ],
   imports: [
     BrowserModule,

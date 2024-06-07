@@ -1,0 +1,318 @@
+<app-menu-orden-carga></app-menu-orden-carga>
+<div class="div.col-md-12 mt-4">
+    <p>df</p>
+</div>
+<div class="col-md-12 mt-4">
+    <div class="col-md-12 text-center mt-4">
+        <h4 style="color: green;">REPORTE DE CAMION</h4>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <h4 style="color: green;">Listado de Camiones</h4>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control form-control-sm"  name="buscar" id="buscar"  [(ngModel)]="buscar" placeholder="Presione ENTER para Buscar por nro de chapa" (keydown.enter)="list(buscar)">
+                            <table class="table table-sm">
+                                <thead class="bg-success text-dark">
+                                    <th>#</th>
+                                    <th>CHAPA</th>
+                                    <th>Color</th>
+                                    <th>Chassis</th>
+                                    <th>Tipo Camion</th>
+                                    <th>Acción</th>
+                                </thead>
+                                <tbody *ngFor="let camion of camion">
+                                    <td>{{camion.id}}</td>
+                                    <td>{{camion.tracto}}</td>
+                                    <td>{{camion.color}}</td>
+                                    <td>{{camion.chassis}}</td>
+                                    <td>{{camion.tipocamion}}</td>
+                                    <td><a (click)="pasar(camion)"><i class="fas fa-arrow-circle-right text-success"></i></a></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center mb-2">
+                <div class="paginacion">
+                    <button class="pag" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+                    <span class="ml-2 mr-2">Página {{ currentPage }} de {{ totalPages }}</span>
+                    <button *ngIf="estadoValidar" class="pag"  (click)="goToPage(currentPage + 1)" disabled="disabled">Siguiente</button>
+                    <button *ngIf="!estadoValidar" class="pag"  (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+                  </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mt-3">
+                            <h4 style="color: green;">Cantidad: {{camionAll.length}}</h4>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button class="btn btn-sm btn-danger mb-2 mt-2" (click)="getAllReporte()">GENERAR PDF TODO</button>
+                        </div>
+                        <div class="col-md-4 d-flex justify-content-end">
+                            <button class="btn btn-sm btn-danger mb-2 mt-2" (click)="downloadPDF()">GENERAR PDF</button>
+                        </div>
+                        <div class="col-md-12">
+                            <table class="table table-sm">
+                                <thead class="bg-success text-dark">
+                                    <th>#</th>
+                                    <th>CHAPA</th>
+                                    <th>Color</th>
+                                    <th>Chassis</th>
+                                    <th>Marca</th>
+                                    <th>Acción</th>
+                                </thead>
+                                <tbody *ngFor="let camion of camionAll; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{camion.tracto}}</td>
+                                    <td>{{camion.color}}</td>
+                                    <td>{{camion.chassis}}</td>
+                                    <td>{{camion.descripcionmarca}}</td>
+                                    <td>
+                                        <a (click)="delete(i)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>
+                        </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------reporte -->
+<div class="contenedor posicion">
+    <div id="htmlData">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="logo-report" src="../../../../assets/img/logo.png" alt="logo">
+            </div>
+            <div class="col-md-4">
+                <h4 class="text-dark pciervo">EL CIERVO S.A.</h4>
+                <p class="preport">RUC: 80086510-3</p>
+                <p class="preport">Avd. 14 de mayo y 1º de marzo</p>
+                <p class="preport">Tel.: 0985 895 188</p>
+                <p class="preport">logistica@elciervosa.com.py</p>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="text-dark">REPORTE CAMION</h4>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <p class="preport">Fecha:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{fecha | date: 'dd-MM-yyyy HH:mm'}}</p>
+                            </div>
+                            <div class="col-6 text-left">
+                                <p class="preport">Cantidad:</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p class="preport">{{camionAll.length}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="phr">
+    <div class="col-md-12 mb-2 mt-2">
+        <div class="row borde" *ngFor="let camionAll of camionAll">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Tracto:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.tracto}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Año:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.anno}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Ejes:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.ejes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>Marca:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.descripcionmarca}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Color:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.color}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Tara:</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{camionAll.tara}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-3">
+                       <P>Modelo:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{camionAll.modelo}}</P>
+                    </div>
+                    <div class="col-md-3">
+                        <P>Chassis:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{camionAll.chassis}}</P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">Cant.:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{formatNumber(camionAll.cantidad)}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Carreta:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{camionAll.carreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Marca:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{camionAll.descripcionmarcacarreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Tipo:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{camionAll.tipo}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Chofer:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p class="pl-3">{{camionAll.nombrechofer}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>C.I.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{camionAll.rucchofer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>Tel.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{camionAll.telefonochofer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Propietario:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p>{{camionAll.nombrepropietario}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>C.I./RUC:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{camionAll.rucpropietario}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Dirección:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{camionAll.direccionpropietario}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div></div>

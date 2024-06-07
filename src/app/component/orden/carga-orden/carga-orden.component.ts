@@ -195,10 +195,14 @@ export class CargaOrdenComponent {
   save() {
     if(!this.estado) {
       if(!this.validarCampo()) {
+        if(this.chofer.estado == false) {
+          this.alertaSuccess("El chofer esta bloqueado: "+this.chofer.obs, "warning");
+        } else {
         this.estado = true;
         this.cantidadFormato = this.formatNumberWithUnit(this.ordenCarga.cantidad, 'KG');
         this.ordenCarga.id_user = parseInt(""+sessionStorage.getItem("codigo"));
         this.ordenCarga.nroorden = this.nroOrden;
+        this.ordenCarga.fecha = new Date();
         this.ordenCargaService.save(this.ordenCarga).subscribe( res => {
           const datos = res.message;
           this.downloadPNG();
@@ -208,6 +212,7 @@ export class CargaOrdenComponent {
           this.estado = false;
           this.alertaSuccess(err.error.message, "warning");
         })
+      }
     }
   }
   }
@@ -216,6 +221,8 @@ export class CargaOrdenComponent {
     this
     this.camionService.getChoferId(idChofer).subscribe( res => {
       this.chofer = res;
+      this.chofer.estado = res.estado;
+      this.chofer.obs = res.obs;
       if(!this.chofer.apellido) {
         this.ordenCarga.nombrechofer = this.chofer.nombre;
       } else {

@@ -1,0 +1,80 @@
+
+
+.logo-orden {
+    padding-left: 10%;
+    width: 90%;
+}
+
+.contenedor {
+    width: 20.5cm;
+}
+
+.logo-report {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+  
+  .preport {
+    margin-bottom: -8px !important;
+    padding: -110px !important;
+  }
+  
+  .pciervo {
+    margin: 0px !important;
+  }
+
+  .phr {
+    margin: 0px !important;
+    border: none;
+    height: 1px;
+    background-color: gray;
+  }
+
+  p {
+    margin: 0px !important;
+    font-size: 11px;
+  }
+  
+  .pdeclaro {
+    margin: 0px !important;
+    font-size: 8px;
+  }
+
+  p, hr {
+    color: black !important;
+  }
+  
+  .borde {
+    border-bottom: solid 1px;
+  }
+  
+
+  p {
+    font-size: 9px !important;
+  }
+
+  .arriba {
+    margin-top: -17px;
+  }
+
+
+  .rectangulo {
+    width: 20.5cm; /* Ancho del rectángulo */
+    height: 29.7cm; /* Altura del rectángulo, el mismo que una hoja A4 */
+    border: 1px solid black; /* Borde para visualización */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .columna {
+    flex: 1;
+    background-color: lightblue; /* Color de fondo de la columna */
+  }
+  
+  .fila {
+    height: 5.94cm; /* Altura de cada fila */
+    border-bottom: 1px solid black; /* Borde para visualización */
+  }
+  
+  

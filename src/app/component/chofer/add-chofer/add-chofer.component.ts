@@ -25,6 +25,7 @@ export class AddChoferComponent {
       this.button = "MODIFICAR"
       this.chofer = this.data.chofer;
     } else {
+      this.chofer.estado = true;
       this.button = "REGISTRAR"
     }
   }
@@ -75,5 +76,17 @@ export class AddChoferComponent {
       icon: tipo,
       title: texto
     });
+  }
+
+  get labelClass(): string {
+    return this.chofer.estado ? 'text-success' : 'text-warning';
+  }
+
+  get labelText(): string {
+    return this.chofer.estado ? 'Activo' : 'Suspendido';
+  }
+
+  toggleEstado() {
+    this.chofer.estado = !this.chofer.estado;
   }
 }
