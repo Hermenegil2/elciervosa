@@ -1,0 +1,299 @@
+<app-menu-orden-carga></app-menu-orden-carga>
+<div class="mt-4">S</div>
+<div class="col-md-12 text-center mt-5">
+    <h4 class="text-success mt-5">REPORTE DE ORDEN DE CARGA</h4>
+</div>
+<div class="col-md-6 mx-auto mt-4">
+    <hr>
+    <form novalidate (ngSubmit)="listarReporte();" #datosForm="ngForm">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="">
+                <label for="cliente" class="form-label">Fecha Inicio:</label>
+                <input class="form-control form-control-sm" type="date" id="fechaI" name="fechaI"  [(ngModel)]="datos.fechaI" #fechaI="ngModel" placeholder="Elige una fecha" required="required">
+            </div>
+    
+            <div class="">
+                <label for="cliente" class="form-label">Fecha Fin:</label>
+                <input class="form-control form-control-sm" type="date" id="fechaF" name="fechaF"  [(ngModel)]="datos.fechaF" #fechaF="ngModel" placeholder="Elige una fecha" required="required">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="cliente" class="col-form-label col-sm-2">Cliente:</label>
+            <div class="col-sm-10">
+                <div class="input-group mb-1">
+                    <input type="text" id="nombre" name="nombre" placeholder="Selecciona un cliente"  [(ngModel)]="datos.cliente" #nombre="ngModel" class="form-control form-control-sm" disabled="disabled" required="required">
+                    <button class="btn btn-outline-success btn-sm" (click)="openDialogCliente()" type="button">Buscar</button>
+                </div>                      
+            </div>
+            <div class="col-md-12">
+                <div class="button">
+                    <button class="btn btn-success btn-sm mt-4" type="submit" [disabled]="!datosForm.valid">VISUALIZAR</button>
+                    <button class="btn btn-warning btn-sm mt-4 ml-3" type="button" (click)="downloadPDF()" [disabled]="cantidadOrden === 0">GENERAR PDF</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+    <hr>
+    <div *ngIf="cantidadOrden != 0" id="htmlData" class="p-4">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-3">
+                <img class="logo-report" src="../../../../assets/img/logo.png" alt="logo">
+            </div>
+            <div class="col-md-5">
+                <h4 class="text-dark pciervo">EL CIERVO S.A.</h4>
+                <p class="preport">RUC: 80086510-3</p>
+                <p class="preport">Avd. 14 de mayo y 1º de marzo</p>
+                <p class="preport">Tel.: 0985 895 188</p>
+                <p class="preport">logistica@elciervosa.com.py</p>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h4 class="text-dark">REPORTE</h4>
+                    </div>
+                    <div class="row arriba">
+                        <div class="col-4 text-left">
+                            <p class="preport">Fecha:</p>
+                        </div>
+                        <div class="col-8 text-right">
+                            <p class="preport">{{fecha | date: 'dd-MM-yyyy HH:mm'}}</p>
+                        </div>
+                        <div class="col-6 text-left">
+                            <p class="preport">Fecha Inicio:</p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="preport">{{datos.fechaI}}</p>
+                        </div>
+                        <div class="col-6 text-left">
+                            <p class="preport">Fecha Fin:</p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="preport">{{datos.fechaF}}</p>
+                        </div>
+                        <div class="col-6 text-left">
+                            <p class="preport">Cant. Orden:</p>
+                        </div>
+                        <div class="col-6 text-right">
+                            <p class="preport">{{cantidadOrden}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="col-md-12">
+        <div class="row mt-2">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Cliente:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{clienteReporte.nombrec}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <p class="preport">RUC:</p>
+                    </div>
+                    <div class="col-md-9">
+                        <p class="preport">{{clienteReporte.rucc}}</p>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <hr>
+    <div class="col-md-12 mb-2 mt-2">
+        <div class="row borde" *ngFor="let ordenCarga of ordenCarga">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Tracto:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.tracto}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Año:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.anno}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Ejes:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.ejes}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>Marca:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.descripcionmarca}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Color:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.color}}</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>Tara:</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p>{{ordenCarga.tara}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-3">
+                       <P>Modelo:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.modelo}}</P>
+                    </div>
+                    <div class="col-md-3">
+                        <P>Chassis:</P>
+                    </div>
+                    <div class="col-md-9">
+                        <P>{{ordenCarga.chassis}}</P>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="row">
+                    <div class="col-md-2">
+                        <p class="preport">Cant.:</p>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="preport">{{formatNumber(ordenCarga.cantidad)}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>Carreta:</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{ordenCarga.carreta}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p>Marca:</p>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p style="font-size: 8px !important;">{{ordenCarga.descripcionmarcacarreta | slice:0:11}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Tipo:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.tipo}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Chofer:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p class="pl-3">{{ordenCarga.nombrechofer}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>C.I.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{ordenCarga.rucchofer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <p>Tel.:</p>
+                            </div>
+                            <div class="col-md-10">
+                                <p>{{ordenCarga.telefonochofer}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1">
+                        <p>Propietario:</p>
+                    </div>
+                    <div class="col-md-11">
+                        <p>{{ordenCarga.nombrepropietario}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>C.I./RUC:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.rucpropietario}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <p>Dirección:</p>
+                            </div>
+                            <div class="col-md-9">
+                                <p>{{ordenCarga.direccionpropietario}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

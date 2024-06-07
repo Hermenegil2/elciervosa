@@ -16,14 +16,16 @@
                     <th>CI/RUC</th>
                     <th>Telefono</th>
                     <th>Dirección</th>
+                    <th>Estado</th>
                     <th *ngIf="estadoPermiso != 0">Acción</th>
                 </thead>
-                <tbody *ngFor="let chofer of chofer">
+                <tbody *ngFor="let chofer of chofer" [ngClass]="{'fila-inactiva': !chofer.estado}">
                     <td (click)="pasar(chofer)">{{chofer.id}}</td>
                     <td (click)="pasar(chofer)">{{chofer.nombre}} {{chofer.apellido}}</td>
                     <td (click)="pasar(chofer)">{{chofer.ruc}}</td>
                     <td (click)="pasar(chofer)">{{chofer.telefono}}</td>
                     <td (click)="pasar(chofer)">{{chofer.direccion}}</td>
+                    <td (click)="pasar(chofer)">{{getEstadoText(chofer.estado)}}</td>
                     <td *ngIf="estadoPermiso != 0">
                         <a (click)="update(chofer)"><i class="fa fa-edit text-info mr-2" aria-hidden="true"></i></a>
                         <a (click)="delete(chofer.id)"><i class="fa fa-trash text-danger" aria-hidden="true"></i></a>

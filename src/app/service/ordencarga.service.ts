@@ -50,5 +50,9 @@ export class OrdencargaService {
    getOrdenCargaIdReport(id: number) {
     return this.http.get<any>(this.url + 'ordenCarga/reporte/'+id);
    }
+
+   getOrdenCargaReportFechaIFechaF(fechaI: string, fechaF: string, idCliente: number) {
+    return this.http.get<any>(this.url + 'ordenCarga/reportes/'+fechaI+'/'+fechaF+'/'+idCliente);
+   }
  
 }

@@ -78,34 +78,38 @@ export class ListChoferComponent {
   } 
     }
 
-delete(id: number) {
-  Swal.fire({
-    title: "Quieres eliminar chofer?",
-    text: "No podrás revertir esto!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si, bórralo!"
-  }).then((result) => {
-      if (result.isConfirmed) {
-        this.choferService.deleteChofer(id).subscribe(res => {
-          this.list("9999999999");
-        Swal.fire({
-          title: "Eliminar!",
-          text: "Tu datos ha sido eliminado.",
-          icon: "success"
-        });
-        }, err => {
+  delete(id: number) {
+    Swal.fire({
+      title: "Quieres eliminar chofer?",
+      text: "No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, bórralo!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+          this.choferService.deleteChofer(id).subscribe(res => {
+            this.list("9999999999");
           Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: err.error.message,
-            footer: '<a href="#">El chofer en uso ya no se puede eliminar?</a>'
+            title: "Eliminar!",
+            text: "Tu datos ha sido eliminado.",
+            icon: "success"
           });
-        });
-      }
-    });
-  
-}
+          }, err => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: err.error.message,
+              footer: '<a href="#">El chofer en uso ya no se puede eliminar?</a>'
+            });
+          });
+        }
+      });
+  }
+
+  getEstadoText(estado: boolean): string {
+    console.log(estado)
+    return estado ? 'ACTIVO' : 'SUSPENDIDO';
+  }
 }

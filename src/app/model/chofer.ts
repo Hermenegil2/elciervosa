@@ -5,4 +5,6 @@ export class Chofer {
     ruc!: string;
     direccion!: string;
     telefono!: string;
+    estado!: boolean;
+    obs!: string;
 }
